@@ -10,4 +10,13 @@
     <string name="instructions_label">Go to Instructions</string>
     <string name="first_instruction_text">By clicking Go to shoe list, you will be able to select any item in the list</string>
     <string name="second_instruction_text">When select any item, you will see the details</string>
+    <string name="logout_label">Logout</string>
+    <string name="go_to_list_label">Go to list</string>
+    <string name="signup_label">Signup</string>
+    <string name="shoe_name_label">Shoe Name</string>
+    <string name="company_label">Company</string>
+    <string name="size">Size</string>
+    <string name="description">Description</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
 </resources>
