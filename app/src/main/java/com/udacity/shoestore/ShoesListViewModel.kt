@@ -10,9 +10,23 @@ class ShoesListViewModel : ViewModel() {
     private val _listOfShoes = MutableLiveData<List<Shoe>>()
     val listOfShoes: LiveData<List<Shoe>> = _listOfShoes
 
-    fun addNewShoe(shoe: Shoe){
+    var shoeName = MutableLiveData<String>()
+    var shoeSize = MutableLiveData<String>()
+    var shoeCompany = MutableLiveData<String>()
+    var shoeDetails = MutableLiveData<String>()
+
+    val shoeAdded = MutableLiveData<Unit>()
+
+    fun addNewShoe(){
+        val shoe = Shoe(
+            shoeName.value.orEmpty(),
+            shoeSize.value.orEmpty().toDoubleOrNull() ?: 0.0,
+            shoeCompany.value.orEmpty(),
+            shoeDetails.value.orEmpty()
+        )
         val list = _listOfShoes.value?.toMutableList() ?: mutableListOf()
         list.add(shoe)
         _listOfShoes.value = list
+        shoeAdded.value = Unit
     }
 }

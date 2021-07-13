@@ -22,25 +22,19 @@ class ShoeDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_detail, container, false)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.buttonCancel.setOnClickListener {
-            view?.findNavController()?.navigateUp()
+            view.findNavController().navigateUp()
         }
-        binding.buttonSave.setOnClickListener {
-            viewModel.addNewShoe(
-                Shoe(
-                    binding.shoeNameInput.text.toString(),
-                    binding.shoeSizeInput.text.toString().toDouble(),
-                    binding.shoeCompanyInput.text.toString(),
-                    binding.shoeDescriptionInput.text.toString()
-                )
-            )
-            view?.findNavController()?.navigateUp()
-        }
+        viewModel.shoeAdded.observe(viewLifecycleOwner, {
+            view.findNavController().navigateUp()
+        })
     }
 
 }

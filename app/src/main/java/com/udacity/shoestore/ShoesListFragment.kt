@@ -1,14 +1,18 @@
 package com.udacity.shoestore
 
-import androidx.lifecycle.ViewModelProvider
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.view.marginBottom
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.udacity.shoestore.databinding.FragmentShoesListBinding
@@ -18,6 +22,26 @@ class ShoesListFragment : Fragment() {
     private val viewModel: ShoesListViewModel by activityViewModels()
 
     lateinit var binding: FragmentShoesListBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.app_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if (item.itemId == R.id.menu_logout) {
+            val intent = Intent(activity, LoginStartActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+            activity?.finish()
+            true
+        } else super.onOptionsItemSelected(item)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +61,7 @@ class ShoesListFragment : Fragment() {
             it.forEach { shoe ->
                 val linearShoe = LinearLayout(context)
                 linearShoe.orientation = LinearLayout.VERTICAL
+                linearShoe.setPadding(0, 0, 0, 10)
                 val textName = TextView(context)
                 val textSize = TextView(context)
                 val textCompany = TextView(context)

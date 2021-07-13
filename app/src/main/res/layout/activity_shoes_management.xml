@@ -6,7 +6,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".ShoesManagementActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="?attr/actionBarSize"
-            app:navGraph="@navigation/shoestore_nav"
+            app:navGraph="@navigation/shoeslist_nav"
             app:defaultNavHost="true"
             />
 

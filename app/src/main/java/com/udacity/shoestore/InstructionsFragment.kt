@@ -1,5 +1,6 @@
 package com.udacity.shoestore
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,15 +18,19 @@ class InstructionsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_instructions, container, false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_instructions, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.buttonGoToList.setOnClickListener {
-            view.findNavController().navigate(R.id.action_instructionsFragment_to_shoesListFragment)
-    }
+            val intent = Intent(activity, ShoesManagementActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+            activity?.finish()
+        }
     }
 
 }

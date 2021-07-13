@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.udacity.shoestore.ShoesListViewModel" />
+    </data>
+    <!-- I used constraint layout to easily arrange items in the layout, and because I have more familiarity with this layout.
+        I could use a linear layout with orientation vertical to other fields plus another linear horizontal in bottom-->
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -20,6 +27,7 @@
             android:id="@+id/shoe_name_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@={viewModel.shoeName}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/shoe_name_label" />
 
@@ -35,6 +43,7 @@
             android:id="@+id/shoe_company_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@={viewModel.shoeCompany}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/shoe_company_label" />
 
@@ -51,6 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
+            android:text="@={viewModel.shoeSize}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/shoe_size_label" />
 
@@ -66,6 +76,7 @@
             android:id="@+id/shoe_description_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@={viewModel.shoeDetails}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/shoe_description_label" />
 
@@ -83,6 +94,7 @@
             android:id="@+id/button_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.addNewShoe()}"
             android:text="@string/save"
             android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
